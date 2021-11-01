@@ -4,29 +4,29 @@ import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 
 const Selected = () => {
-    const {user} = useAuth()
-    const {id} = useParams()
+    const { user } = useAuth()
+    const { id } = useParams()
 
-    const [selected,setSelected]= useState({})
-    const [newUser,setNewUser]= useState({})
+    const [selected, setSelected] = useState({})
+    const [newUser, setNewUser] = useState({})
 
-    useEffect(()=>{
-        fetch('http://localhost:7000/card')
-        .then(res => res.json())
-        .then(data => {
-            const newSelected = data.find(sec => sec._id === id)
-            setSelected(newSelected)
-        })
-      },[])
+    useEffect(() => {
+        fetch('https://obscure-temple-75896.herokuapp.com/card')
+            .then(res => res.json())
+            .then(data => {
+                const newSelected = data.find(sec => sec._id === id)
+                setSelected(newSelected)
+            })
+    }, [])
 
-      const handleDate = e => {
-          const newDate = {...newUser}
-          newDate.date = e.target.value
-          setNewUser(newDate)
-      }
+    const handleDate = e => {
+        const newDate = { ...newUser }
+        newDate.date = e.target.value
+        setNewUser(newDate)
+    }
 
 
-      const handleUserInfo = e =>{
+    const handleUserInfo = e => {
 
         const update = newUser
         update.title = selected.name
@@ -36,18 +36,18 @@ const Selected = () => {
         setNewUser(update)
 
 
-        fetch('http://localhost:7000/users',{
-            method:'POST',
-            headers:{'content-type':'application/json'},
-            body:JSON.stringify(newUser)
+        fetch('https://obscure-temple-75896.herokuapp.com/users', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newUser)
         }).then(res => res.json())
-        .then(data => {
-            if (data.insertedId) {
-                alert('Successfull added your package')
-            }
-        })
+            .then(data => {
+                if (data.insertedId) {
+                    alert('Successfull added your package')
+                }
+            })
         e.preventDefault()
-      }
+    }
 
     return (
         <div>
@@ -57,30 +57,30 @@ const Selected = () => {
                         <img src={selected?.img} alt="" className="w-100 h-100" />
                     </div>
                     <div className="col-12 col-md-6 text-start">
-                    <Form onSubmit={handleUserInfo}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Your Selected Package</Form.Label>
-                            <Form.Control value={selected?.name}  type="text" placeholder="Your Name" />
-                        </Form.Group>
+                        <Form onSubmit={handleUserInfo}>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Your Selected Package</Form.Label>
+                                <Form.Control value={selected?.name} type="text" placeholder="Your Name" />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Your Name</Form.Label>
-                            <Form.Control value={user?.displayName} type="text" placeholder="Your Name" />
-                        </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Your Name</Form.Label>
+                                <Form.Control value={user?.displayName} type="text" placeholder="Your Name" />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control value={user?.email} type="email" placeholder="Enter email" />
-                        </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control value={user?.email} type="email" placeholder="Enter email" />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control onChange={handleDate} type="date" placeholder="date" required/>
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Date</Form.Label>
+                                <Form.Control onChange={handleDate} type="date" placeholder="date" required />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
                     </div>
                 </div>
             </Container>

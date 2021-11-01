@@ -3,29 +3,29 @@ import { Form } from "react-bootstrap";
 
 const CreateNewEvent = () => {
 
-  const [updateEvent,setUpdateEvent] = useState({
-    name : '',
-    img:'',
-    fee:'',
-    des:''
+  const [updateEvent, setUpdateEvent] = useState({
+    name: '',
+    img: '',
+    fee: '',
+    des: ''
   })
 
   const handleAll = e => {
-    const {name,value} = e.target
-    setUpdateEvent({...updateEvent,[name]:value})
+    const { name, value } = e.target
+    setUpdateEvent({ ...updateEvent, [name]: value })
   }
 
-  const handleEvent = e =>{
-    fetch('http://localhost:7000/card',{
-      method:'POST',
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify(updateEvent)
+  const handleEvent = e => {
+    fetch('https://obscure-temple-75896.herokuapp.com/card', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(updateEvent)
     }).then(res => res.json())
-    .then(data => {
-      if (data.insertedId) {
-        alert('Successfully added a new Event')
-      }
-    })
+      .then(data => {
+        if (data.insertedId) {
+          alert('Successfully added a new Event')
+        }
+      })
 
     e.preventDefault()
   }
@@ -51,7 +51,7 @@ const CreateNewEvent = () => {
             </Form.Group>
             <Form.Group className="mb-3 fw-bold" controlId="formGroupText">
               <Form.Label>Description</Form.Label>
-              <Form.Control onChange={handleAll} name="des" as="textarea" rows={3} placeholder="Event Description"/>
+              <Form.Control onChange={handleAll} name="des" as="textarea" rows={3} placeholder="Event Description" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formGroupPassword">
               <Form.Control
