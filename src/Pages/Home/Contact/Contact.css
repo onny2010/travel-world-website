@@ -1,0 +1,35 @@
+.contact-us{
+    background: rgb(230, 230, 230);
+    padding-top: 30px;
+}
+.contact-us p{
+    text-align: center;
+    color: bisque;
+}
+
+.contact{
+    padding:  50px;
+}
+input[type= "text"] {
+    width: 700px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0px solid;
+    padding: 10px;
+}
+textarea, .btn-style{
+    width: 700px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0px solid;
+    padding: 10px;
+}
+
+.btn-style{
+    color: white;
+    background: rgb(28, 34, 33);
+}

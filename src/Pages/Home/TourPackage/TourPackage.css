@@ -1,0 +1,21 @@
+.package-section{
+    background-color: rgb(175, 175, 175);
+}
+.card-container{
+    border-radius: 20px;
+    background-color: rgb(53, 62, 63);
+}
+.img-body{
+    border-radius: 20px;
+}
+.body-container{
+    height: 420px;
+}
+.btn{
+    background-color: rgb(7, 85, 158);
+    color: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
