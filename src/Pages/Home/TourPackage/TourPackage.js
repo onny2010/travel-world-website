@@ -8,9 +8,16 @@ const TourPackage = () => {
   const [packages, setPakages] = useState([])
 
   useEffect(() => {
-    fetch('https://obscure-temple-75896.herokuapp.com/card')
+    fetch('http://localhost:7000/tour')
       .then(res => res.json())
-      .then(data => setPakages(data))
+      .then(data => {
+        setPakages(data)
+        // console.log(data)
+      })
+
+      .catch((error) => {
+        console.log(error)
+    });
   }, [])
 
 

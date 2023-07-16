@@ -9,19 +9,22 @@ const MyOrder = () => {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    fetch('https://obscure-temple-75896.herokuapp.com/users')
+    fetch('http://localhost:7000/users')
       .then(res => res.json())
       .then(data => {
         const myOrder = data.filter(order => order.email === user.email)
         setOrders(myOrder)
       })
+      .catch((error) => {
+        console.log(error)
+    });
   }, [])
 
 
   const cancelBtn = id => {
     const confirm = window.confirm('Are you sure wanna remove this item?')
     if (confirm) {
-      fetch(`https://obscure-temple-75896.herokuapp.com/users/${id}`, {
+      fetch(`http://localhost:7000/users/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())
@@ -33,6 +36,9 @@ const MyOrder = () => {
 
           }
         })
+        .catch((error) => {
+          console.log(error)
+      });
     }
   }
 

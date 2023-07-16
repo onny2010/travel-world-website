@@ -16,7 +16,7 @@ const CreateNewEvent = () => {
   }
 
   const handleEvent = e => {
-    fetch('https://obscure-temple-75896.herokuapp.com/card', {
+    fetch('http://localhost:7000/tour', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(updateEvent)
@@ -26,6 +26,9 @@ const CreateNewEvent = () => {
           alert('Successfully added a new Event')
         }
       })
+      .catch((error) => {
+        console.log(error)
+    });
 
     e.preventDefault()
   }

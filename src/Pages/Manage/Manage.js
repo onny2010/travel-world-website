@@ -6,9 +6,13 @@ const Manage = () => {
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
-        fetch('https://obscure-temple-75896.herokuapp.com/users')
+        fetch('http://localhost:7000/users')
             .then(res => res.json())
             .then(data => setOrders(data))
+
+            .catch((error) => {
+                console.log(error)
+            });
     }, [])
 
 
@@ -16,7 +20,7 @@ const Manage = () => {
     const deleteBtn = id => {
         const confirm = window.confirm('are you sure to delete this ?')
         if (confirm) {
-            fetch(`https://obscure-temple-75896.herokuapp.com/users/${id}`, {
+            fetch(`http://localhost:7000/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -28,6 +32,9 @@ const Manage = () => {
 
                     }
                 })
+                .catch((error) => {
+                    console.log(error)
+                });
         }
     }
     return (

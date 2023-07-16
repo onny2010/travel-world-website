@@ -11,12 +11,15 @@ const Selected = () => {
     const [newUser, setNewUser] = useState({})
 
     useEffect(() => {
-        fetch('https://obscure-temple-75896.herokuapp.com/card')
+        fetch('http://localhost:7000/tour')
             .then(res => res.json())
             .then(data => {
                 const newSelected = data.find(sec => sec._id === id)
                 setSelected(newSelected)
             })
+            .catch((error) => {
+                console.log(error)
+            });
     }, [])
 
     const handleDate = e => {
@@ -27,6 +30,8 @@ const Selected = () => {
 
 
     const handleUserInfo = e => {
+        
+        e.preventDefault()
 
         const update = newUser
         update.title = selected.name
@@ -36,7 +41,7 @@ const Selected = () => {
         setNewUser(update)
 
 
-        fetch('https://obscure-temple-75896.herokuapp.com/users', {
+        fetch('http://localhost:7000/users', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newUser)
@@ -46,7 +51,10 @@ const Selected = () => {
                     alert('Successfull added your package')
                 }
             })
-        e.preventDefault()
+            .catch((error) => {
+                console.log(error)
+            });
+        
     }
 
     return (
