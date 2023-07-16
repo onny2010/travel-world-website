@@ -20,7 +20,7 @@ const Selected = () => {
             .catch((error) => {
                 console.log(error)
             });
-    }, [])
+    }, [id])
 
     const handleDate = e => {
         const newDate = { ...newUser }

@@ -18,7 +18,7 @@ const MyOrder = () => {
       .catch((error) => {
         console.log(error)
     });
-  }, [])
+  }, [user])
 
 
   const cancelBtn = id => {
